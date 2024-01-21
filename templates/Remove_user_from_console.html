@@ -1,0 +1,66 @@
+{% load static %}
+{% if messages %}
+<ul class="messages" id="flash-messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+  <script src="{% static 'js/messages.js'%}"></script>
+  <title>Remove user from console</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row-cols-2">
+      <form method="post" action="remove_user_from_console_form">
+        {% csrf_token %}
+        <div class="form-container">
+          <div class="col-1">
+            <div class="label">
+              <label for="inputPassword">Username</label><br />
+            </div>
+          </div>
+          <div class="col-2">
+            <div>
+              <input type="text" class="input" name="user_name" /><br />
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="container-1">
+          <div class="btn-group">
+            <button type="submit" class="btn">Remove</button>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="reset" class="btn">Reset</button>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="button" class="btn" onclick="location.href='{% url 'dashboard/' %}'">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="logo">
+      <img src="{% static 'images/workspace_logo.png' %}" alt="workspace_logo" class="logo" />
+    </div>
+  </div>
+  <div>
+    <p class="application_version">Application version : 1.0</p>
+  </div>
+</body>
+
+</html>

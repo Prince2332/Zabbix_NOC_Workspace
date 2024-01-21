@@ -1,0 +1,88 @@
+{% load static %}
+{% if messages %}
+<ul class="messages" id="flash-messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+  <script src="{% static 'js/messages.js'%}"></script>
+  <title>Add host to maintenance</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row-cols-3">
+      <form method="post" action="add_host_to_maintenance_form">
+        {% csrf_token %}
+        <div class="form-container">
+          <div class="col-1">
+            <div class="label">
+              <label for="inputPassword">Maintenance name</label><br />
+            </div>
+            <div class="label">
+              <label for="inputPassword">Host Name</label><br />
+            </div>
+            <div class="label">
+              <label for="active_since">Active since</label><br />
+            </div>
+            <div class="label">
+              <label for="active_till">Active till</label><br />
+            </div>
+            <div class="label">
+              <label for="text-input">Ticket number</label><br />
+            </div>
+            <div class="label">
+              <label for="text-input">Requested by</label><br />
+            </div>
+          </div>
+          <div class="col-2">
+            <div>
+              <input type="text" class="input" name="maintenance_name" required /><br />
+            </div>
+            <div>
+              <input type="text" class="input" name="host_name" required /><br />
+            </div>
+            <div><input type="datetime-local" class="input" name="active_since" required /><br /></div>
+            <div><input type="datetime-local" class="input" name="active_till" required /><br /></div>
+            <div><input class="input" type="text" name="ticket_number" required /><br /></div>
+            <div><input class="input" type="text" name="requested_by" required /><br /></div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="container-1">
+          <div class="btn-group">
+            <button type="submit" class="btn">Add</button>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="reset" class="btn">Reset</button>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="button" class="btn" onclick="location.href='{% url 'dashboard/' %}'">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="logo">
+      <img src="{% static 'images/workspace_logo.png' %}" alt="workspace_logo" class="logo" />
+    </div>
+  </div>
+  <div>
+    <p class="application_version">Application version : 1.0</p>
+  </div>
+</body>
+
+</html>

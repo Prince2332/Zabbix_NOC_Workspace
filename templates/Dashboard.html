@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workspace Console</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+    <style>
+      .list {
+        display: inline-block;
+        width: fit-content;
+      }
+
+      .list-container {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    <div class="container">
+      <h1>User Actions</h1>
+      <b>
+        <div class="list-container">
+          <a class="list" href="add_host_to_monitoring">
+            <li>Add host to monitoring</li> </a
+          ><br />
+          <a class="list" href="remove_host_from_monitoring">
+            <li>Remove host from monitoring</li> </a
+          ><br />
+          <a class="list" href="add_host_to_maintenance">
+            <li>Add host to maintenance</li> </a
+          ><br />
+          <a class="list" href="remove_host_from_maintenance">
+            <li>Remove host from maintenance</li> </a
+          ><br />
+          <a class="list" href="add_user_to_console">
+            <li>Add user to console</li> </a
+          ><br />
+          <a class="list" href="remove_user_from_console">
+            <li>Remove user from console</li> </a
+          ><br />
+          <a class="list">
+            <li>Generate report</li>
+          </a>
+        </div>
+        <button class="btn-group">Sign out</button>
+        <div class="logo">
+          <img
+            src="{% static 'images/workspace_logo.png' %}"
+            alt="workspace_logo"
+            class="logo"
+          />
+        </div>
+      </b>
+    </div>
+    <div>
+      <p class="application_version">Application version : 1.0</p>
+    </div>
+  </body>
+</html>

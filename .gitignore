@@ -1,0 +1,6 @@
+**.pch
+**.cpython-310.pyc
+workspace/workspace/__pycache__/*
+/workspace/login/__pycache__/
+/workspace/workspace/__pycache__/
+.vscode

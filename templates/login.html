@@ -1,0 +1,79 @@
+{% load static %}
+
+{% if messages %}
+<ul class="messages" id="flash-messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+  <script src="{% static 'js/messages.js'%}"></script>
+  <title>User login</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row-cols-3">
+      <form method="post" action="Login_view">
+        {% csrf_token %}
+        <div class="form-container">
+          <div class="col-1">
+            <div class="label">
+              <label for="inputPassword">User name</label><br />
+            </div>
+            <div class="label">
+              <label for="ip-input">Password</label><br />
+            </div>
+          </div>
+          <div class="col-2">
+            <div><input type="text" class="input" name="username" /><br /></div>
+            <div>
+              <input type="password" class="input" name="password" /><br />
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="label">
+              <label for="text-input" style="bottom: 226px" id="description">Application owner</label>
+            </div>
+            <div class="">
+              <p class="paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Debitis molestias blanditiis alias a ipsa error cum odio
+                facere laboriosam rerum quibusdam vitae, laborum accusamus
+                repellendus vel eligendi ea ipsum autem.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <div class="container-1">
+          <div class="btn-group">
+            <button type="submit" class="btn">Login</button>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+      </form>
+    </div>
+    <div class="logo">
+      <img src="{% static 'images/workspace_logo.png' %}" alt="workspace_logo" class="logo" />
+    </div>
+  </div>
+  <div>
+    <p class="application_version">Application version : 1.0</p>
+  </div>
+</body>
+
+</html>

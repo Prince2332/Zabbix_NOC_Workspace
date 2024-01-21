@@ -1,0 +1,118 @@
+{% load static %}
+{% if messages %}
+<ul class="messages" id="flash-messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add host to monitoring</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+  <script src="{% static 'js/messages.js'%}"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row-cols-3">
+      <form method="post" action="add_host_to_monitoring_form">
+        {% csrf_token %}
+        <div class="form-container">
+          <div class="col-1">
+            <div class="label">
+              <label for="inputPassword">Host Name</label><br />
+            </div>
+            <div class="label">
+              <label for="ip-input">Host IP</label><br />
+            </div>
+
+            <div class="label">
+              <label for="active_till">Host group</label><br />
+            </div>
+            <div class="label">
+              <label for="text-input">Template</label><br />
+            </div>
+            <div class="label">
+              <label for="text-input">Type of monitoring</label><br />
+            </div>
+          </div>
+          <div class="col-2">
+            <div>
+              <input type="text" class="input" name="host_name" required /><br />
+            </div>
+            <div><input type="text" class="input" name="host_ip" required /><br /></div>
+            <div>
+              <select class="input" name="host_group" required>
+                {% for ch in chs %}
+                <option value="{{ ch.0 }}">{{ ch.1 }}</option>
+                {% endfor %}
+              </select><br />
+            </div>
+            <div>
+              <select class="input" name="template" required>
+                {% for choice in choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+              </select><br />
+            </div>
+            <div>
+              <select class="input" name="type_monitoring" required>
+                <option value=1>Agent</option>
+                <option value=2>SNMP</option>
+                <option value=3>IPMI</option>
+                <option value=4>JMX</option>
+
+              </select><br />
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="label">
+              <label for="text-input" style="bottom: 168px" id="description">Description</label>
+            </div>
+            <div class="description">
+              <textarea name="description" style="background: none; position: absolute; bottom: 182px;"></textarea>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="container-1">
+          <div class="btn-group">
+            <button type="button" onclick="location.href='host_bulk_import'" id="button-2" class="btn">Bulk import</button>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="submit" class="btn">Add</button>
+          </div>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="reset" class="btn">Reset</button>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="button" class="btn" onclick="location.href='{% url 'dashboard/' %}'">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="logo">
+      <img src="{% static 'images/workspace_logo.png' %}" alt="workspace_logo" class="logo" />
+    </div>
+  </div>
+  
+  <div>
+    <p class="application_version">Application version : 1.0</p>
+  </div>
+</body>
+
+</html>

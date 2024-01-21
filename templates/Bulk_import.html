@@ -1,0 +1,56 @@
+{% load static %}
+{% if messages %}
+<ul class="messages" id="flash-messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+  <script src="{% static 'js/messages.js'%}"></script>
+  <title>Bulk import</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row-cols-2">
+      <form method="post" action="bulk_import_host_form" enctype="multipart/form-data" accept=".csv">
+        {% csrf_token %}
+        <div class="form-container">
+          <input type="file" name="file" style="width: 175px;">
+          <a href="{% url 'download_static_file' 'files/sample.csv' %}">Download Sample File</a>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="container-1">
+          <div class="btn-group">
+            <button type="submit" class="btn">Import</button>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="button" class="btn" onclick="location.href='add_host_to_monitoring'">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="logo">
+      <img src="{% static 'images/workspace_logo.png' %}" alt="workspace_logo" class="logo" />
+    </div>
+  </div>
+  <div>
+    <p class="application_version">Application version : 1.0</p>
+  </div>
+</body>
+
+</html>
